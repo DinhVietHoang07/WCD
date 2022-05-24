@@ -20,7 +20,7 @@ class MySqlCustomerModelTest {
 
     @Test
     void save() {
-        model.save(new Customer("T005","Quang","09128563478","Quang.jpg",LocalDateTime.of(2004, 10, 10, 10, 10)));
+        model.save(new Customer("T005","Linh","0854789456","Linh.jpg",LocalDateTime.of(2004, 10, 10, 10, 10)));
     }
 
     @Test
@@ -35,18 +35,18 @@ class MySqlCustomerModelTest {
     @Test
     void findById() {
         Customer student = model.findById("T005");
-        assertEquals("Quang", student.getName());
+        assertEquals("Linh", student.getName());
         Customer student1 = model.findById("T005");
-        assertEquals("Luyen", student1.getName());
+        assertEquals("Lam", student1.getName());
     }
 
     @Test
     void update() {
         Customer student = model.findById("A001");
-        student.setName("Xuan Van Hung");
+        student.setName("Dinh Viet Hoang");
         model.update("A001", student);
         Customer newUpdateCustomer = model.findById("A001");
-        assertEquals("Xuan Van Hung", newUpdateCustomer.getName());
+        assertEquals("Dinh Viet Hoang", newUpdateCustomer.getName());
     }
 
     @Test
