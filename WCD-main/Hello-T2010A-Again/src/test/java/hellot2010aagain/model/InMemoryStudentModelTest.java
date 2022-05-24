@@ -21,9 +21,9 @@ class InMemoryStudentModelTest {
         System.out.println(model.findAll().size());
         Student student = new Student(
                 "A005",
-                "Xuan Hinh",
-                "hinh@gmail.com",
-                "091234555",
+                "Ngoc Linh",
+                "linh@gmail.com",
+                "038202003",
                 LocalDateTime.of(2000, 10, 10, 0, 0)
         );
         model.save(student);
@@ -44,7 +44,7 @@ class InMemoryStudentModelTest {
     @Test
     void update() {
         Student student = model.findById("A001");
-        student.setFullName("Dao Xuan Hung");
+        student.setFullName("Dinh Viet Hoang");
         model.update("A001", student);
         for (Student st: model.findAll()) {
             System.out.println(st.toString());
