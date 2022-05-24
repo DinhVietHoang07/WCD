@@ -18,11 +18,11 @@ class InMemoryCustomerModelTest {
     void save() {
         System.out.println(model.findAll().size());
         Customer customer = new Customer(
-                "T004",
-                "Hoang Anh",
-                "097854712",
-                "HoangAnh.jpg",
-                LocalDateTime.of(2000, 10, 10, 0, 0)
+                "T009",
+                "Gia Hung",
+                "0987585973",
+                "Giahung.jpg",
+                LocalDateTime.of(2009, 10, 10, 0, 0)
         );
         model.save(customer);
         System.out.println(model.findAll().size());
@@ -40,7 +40,7 @@ class InMemoryCustomerModelTest {
     @Test
     void update() {
         Customer student = model.findById("T001");
-        student.setName("Huu Thanh");
+        student.setName("Viet Hoang");
         model.update("T001", new Customer());
         for (Customer st: model.findAll()) {
             System.out.println(st.toString());
