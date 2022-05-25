@@ -39,32 +39,15 @@ public class CreateStudentServlet extends HttpServlet {
         String email = req.getParameter("email");
         String phone = req.getParameter("phone");
         String stringBirthday = req.getParameter("birthday");
-        System.out.println(fullName);
         Student student = new Student(rollNumber, fullName, email, phone);
-        HashMap<String, String> errors = new HashMap<>();
         if (stringBirthday != null && stringBirthday.length() > 0) {
             LocalDateTime birthday = DateTimeHelper.convertStringToLocalDateTime(stringBirthday);
             student.setDob(birthday);
         }
-        // validate dữ liệu theo kiểu cùi bắp.
-        if (rollNumber == null || rollNumber.length() == 0) {
-            errors.put("rollNumber", "Please enter rollnumber");
-        }
-        if (fullName == null || fullName.length() == 0) {
-            errors.put("fullName", "Please enter fullname");
-        }
-        if (email == null || email.length() == 0) {
-            errors.put("email", "Please enter email");
-        } else if (!ValidationUtil.checkEmail(email)) {
-            errors.put("email", "Invalid email, please enter real email. For example: admin@gmail.com");
-        }
-        if (phone == null || phone.length() == 0) {
-            errors.put("phone", "Please enter phone");
-        }
-        if (errors.size() > 0) {
+        if (!student.isValid()) {
             req.setAttribute("student", student);
             req.setAttribute("action", 1);
-            req.setAttribute("errors", errors);
+            req.setAttribute("errors", student.getErrors());
             req.getRequestDispatcher("/admin/students/form.jsp").forward(req, resp);
             return;
         }

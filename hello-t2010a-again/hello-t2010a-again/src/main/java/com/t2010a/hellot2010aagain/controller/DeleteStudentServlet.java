@@ -21,16 +21,13 @@ public class DeleteStudentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // lấy tham số rollNumber(id)
         String rollNumber = req.getParameter("id");
-        // kiểm tra trong database xem có tồn tại không.
         Student student = studentModel.findById(rollNumber);
-        // nếu không trả về trang 404
         if (student == null) {
             req.setAttribute("message", "Student not found!");
             req.getRequestDispatcher("/admin/errors/404.jsp").forward(req, resp);
         } else {
-            boolean result = studentModel.delete(rollNumber); // xoá mềm.
+            boolean result = studentModel.delete(rollNumber);
             if (result) {
                 resp.sendRedirect("/admin/students/list");
             } else {

@@ -22,16 +22,12 @@ public class EditStudentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // lấy tham số rollNumber(id)
         String rollNumber = req.getParameter("id");
-        // kiểm tra trong database xem có tồn tại không.
         Student student = studentModel.findById(rollNumber);
-        // nếu không trả về trang 404
         if (student == null) {
             req.setAttribute("message", "Student not found!");
             req.getRequestDispatcher("/admin/errors/404.jsp").forward(req, resp);
         } else {
-            // nếu có trả về trang detail
             req.setAttribute("student", student);
             req.setAttribute("action", 2);
             req.getRequestDispatcher("/admin/students/form.jsp").forward(req, resp);
@@ -41,7 +37,6 @@ public class EditStudentServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
-        // xử lý validate và save.
         String rollNumber = req.getParameter("rollNumber");
         Student existingStudent = studentModel.findById(rollNumber);
         if(existingStudent == null){
@@ -55,11 +50,9 @@ public class EditStudentServlet extends HttpServlet {
             System.out.println(fullName);
             LocalDateTime birthday = DateTimeHelper.convertStringToLocalDateTime(stringBirthday);
             Student student = new Student(rollNumber, fullName, email, phone, birthday);
-            // validate dữ liệu
             if (studentModel.update(rollNumber, student) != null) {
                 resp.sendRedirect("/admin/students/list");
             } else {
-                // nếu có trả về trang form
                 req.setAttribute("student", student);
                 req.setAttribute("action", 2);
                 req.getRequestDispatcher("/admin/students/form.jsp").forward(req, resp);

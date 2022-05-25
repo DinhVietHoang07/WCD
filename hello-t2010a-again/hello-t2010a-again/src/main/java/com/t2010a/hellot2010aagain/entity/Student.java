@@ -1,9 +1,10 @@
 package com.t2010a.hellot2010aagain.entity;
 
 import com.t2010a.hellot2010aagain.util.DateTimeHelper;
+import com.t2010a.hellot2010aagain.util.ValidationUtil;
 
 import java.time.LocalDateTime;
-
+import java.util.HashMap;
 
 public class Student {
 
@@ -14,7 +15,30 @@ public class Student {
     private LocalDateTime dob;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private int status; // xoá mềm
+    private int status;
+    private HashMap<String, String> errors = new HashMap<>();
+
+    public boolean isValid(){
+        checkValidate();
+        return errors.size() == 0;
+    }
+
+    private void checkValidate() {
+        if (rollNumber == null || rollNumber.length() == 0) {
+            errors.put("rollNumber", "Please enter rollnumber");
+        }
+        if (fullName == null || fullName.length() == 0) {
+            errors.put("fullName", "Please enter fullname");
+        }
+        if (email == null || email.length() == 0) {
+            errors.put("email", "Please enter email");
+        } else if (!ValidationUtil.checkEmail(email)) {
+            errors.put("email", "Invalid email, please enter real email. For example: admin@gmail.com");
+        }
+        if (phone == null || phone.length() == 0) {
+            errors.put("phone", "Please enter phone");
+        }
+    }
 
     public Student(String rollNumber, String fullName, String email, String phone, LocalDateTime dob, LocalDateTime createdAt, LocalDateTime updatedAt, int status) {
         this.rollNumber = rollNumber;
@@ -67,6 +91,10 @@ public class Student {
                 ", updatedAt=" + updatedAt +
                 ", status=" + status +
                 '}';
+    }
+
+    public HashMap<String, String> getErrors() {
+        return errors;
     }
 
     public String getRollNumber() {

@@ -16,10 +16,10 @@ public class InMemoryStudentModel implements StudentModel {
         students.add(
                 new Student(
                         "A001",
-                        "Xuan Hung",
-                        "xuanhung@gmail.com",
-                        "0912345678",
-                        LocalDateTime.of(2004, 10, 10, 0, 0),
+                        "Ngoc Linh",
+                        "ngoclinh@gmail.com",
+                        "0956897456",
+                        LocalDateTime.of(2002, 01, 07, 0, 0),
                         LocalDateTime.now(),
                         LocalDateTime.now(),
                         1)
@@ -27,10 +27,10 @@ public class InMemoryStudentModel implements StudentModel {
         students.add(
                 new Student(
                         "A002",
-                        "Xuan Sang",
-                        "xuansang@gmail.com",
-                        "0912345679",
-                        LocalDateTime.of(2004, 10, 10, 0, 0),
+                        "Ngoc Son",
+                        "ngocson@gmail.com",
+                        "0987523456",
+                        LocalDateTime.of(2003, 02, 07, 0, 0),
                         LocalDateTime.now(),
                         LocalDateTime.now(),
                         1)
@@ -38,10 +38,10 @@ public class InMemoryStudentModel implements StudentModel {
         students.add(
                 new Student(
                         "A003",
-                        "Xuan Thi",
-                        "xuanthi@gmail.com",
-                        "0912345679",
-                        LocalDateTime.of(2004, 10, 10, 0, 0),
+                        "Ngoc Long",
+                        "ngoclong@gmail.com",
+                        "0983369741",
+                        LocalDateTime.of(2004, 03, 10, 0, 0),
                         LocalDateTime.now(),
                         LocalDateTime.now(),
                         1)
@@ -49,10 +49,10 @@ public class InMemoryStudentModel implements StudentModel {
         students.add(
                 new Student(
                         "A004",
-                        "Xuan Dieu",
-                        "xuandieu@gmail.com",
-                        "0912345689",
-                        LocalDateTime.of(2004, 10, 10, 0, 0),
+                        "Ngoc Lien",
+                        "ngoclien@gmail.com",
+                        "0981482973",
+                        LocalDateTime.of(2005, 10, 10, 0, 0),
                         LocalDateTime.now(),
                         LocalDateTime.now(),
                         1)

@@ -12,8 +12,6 @@ public class HomeServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String firstName = request.getParameter("firstName");
         String lastName = request.getParameter("lastName");
-        // xử lý logic
-        // xử lý, lấy dữ liệu ở database.
         request.setAttribute("firstName", firstName);
         request.setAttribute("lastName", lastName);
         request.getRequestDispatcher("/home.jsp").forward(request, response);

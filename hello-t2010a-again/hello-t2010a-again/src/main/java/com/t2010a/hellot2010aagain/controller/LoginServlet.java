@@ -1,5 +1,7 @@
 package com.t2010a.hellot2010aagain.controller;
 
+import com.t2010a.hellot2010aagain.entity.Account;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,12 +22,11 @@ public class LoginServlet extends HttpServlet {
         String password = req.getParameter("password");
         Account account = new Account();
         account.setUsername(username);
-        account.setPassword(password);
-        account.setEmail("Hoang@gmail.com");
-        account.setPhone("MyPhone");
+
+        account.setEmail("linh@gmail.com");
+        account.setPhone("myphone");
         HttpSession session = req.getSession();
         session.setAttribute("account", account);
         resp.sendRedirect("/admin/information");
-
     }
 }

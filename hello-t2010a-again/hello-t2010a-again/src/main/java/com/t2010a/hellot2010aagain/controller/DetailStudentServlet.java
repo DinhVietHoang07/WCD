@@ -22,31 +22,28 @@ public class DetailStudentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        // lấy tham số rollNumber(id)
         String rollNumber = req.getParameter("id");
-        // kiểm tra trong database xem có tồn tại không.
         Student student = studentModel.findById(rollNumber);
-        // nếu không trả về trang 404
         if (student == null) {
             req.setAttribute("message", "Student not found!");
             req.getRequestDispatcher("/admin/errors/404.jsp").forward(req, resp);
         } else {
             HttpSession session = req.getSession();
-            ArrayList<Student> recentView =(ArrayList<Student>)session.getAttribute("recentView");;
-            if (recentView == null){
+            ArrayList<Student> recentView =
+                    (ArrayList<Student>) session.getAttribute("recentView");;
+            if(recentView == null){
                 recentView = new ArrayList<Student>();
             }
             boolean exist = false;
-            for (int i = 0; i < recentView.size(); i++){
-                if (recentView.get(i).getRollNumber().equals(student.getRollNumber())){
+            for (int i = 0; i < recentView.size(); i++) {
+                if(recentView.get(i).getRollNumber().equals(student.getRollNumber())){
                     exist = true;
                 }
             }
-            if (!exist){
+            if(!exist){
                 recentView.add(student);
                 session.setAttribute("recentView", recentView);
             }
-            // nếu có trả về trang detail
             req.setAttribute("student", student);
             req.getRequestDispatcher("/admin/students/detail.jsp").forward(req, resp);
         }
